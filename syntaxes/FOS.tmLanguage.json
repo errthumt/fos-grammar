@@ -33,6 +33,7 @@
       "patterns": [
         { "include": "#calcComments" },
         { "include": "#comments" },
+        { "include": "#embeddedFile" },
         { "include": "#loopedKey" },
         { "include": "#keyValue" },
         { "include": "#multilineString"},
@@ -91,6 +92,7 @@
           "patterns": [
             { "include": "#calcComments" },
             { "include": "#comments" },
+            { "include": "#embeddedFile" },
             { "include": "#multilineString" },
             { "include": "#blockValue" },
             { "include": "#numericValue" },
@@ -113,6 +115,7 @@
           "patterns": [
             { "include": "#calcComments" },
             { "include": "#comments" },
+            { "include": "#embeddedFile" },
             { "include": "#loopedKey" },
             { "include": "#keyValue" },
             { "include": "#multilineString"},
@@ -161,6 +164,14 @@
           "match": ".+"
         }
       ]
+    },
+
+    "embeddedFile": {
+      "name": "meta.embedded.file.fos",
+      "begin": "{{{",
+      "beginCaptures": { "0": { "name": "punctuation.section.embedded.begin.fos" } },
+      "end": "#+\\s+END\\sFOS\\sEMBED\\s}}}",
+      "endCaptures": { "0": { "name": "punctuation.section.embedded.end.fos" } }
     }
   }
 }

@@ -2,7 +2,7 @@
   "name": "fos",
   "displayName": "File of Synthesis",
   "description": "ASCII File for communicating methods and results for Solid-State Syntheses",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.118.0"
   },
