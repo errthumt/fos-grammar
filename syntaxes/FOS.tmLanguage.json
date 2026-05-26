@@ -1,0 +1,169 @@
+{
+  "scopeName": "source.fos",
+  "name": "FOS",
+  "patterns": [
+    { "include": "#calcComments" },
+    { "include": "#comments" },
+    { "include": "#singleBlock" },
+    { "include": "#multiBlock" },
+    { "include": "#keyValue" },
+    { "include": "#garbage" }
+  ],
+  "repository": {
+    "singleBlock": {
+        "patterns": [
+          {
+            "name": "keyword.control.singleblock.fos",
+            "match": "^\\s*\\[\\s*[A-Za-z0-9_]+\\s*\\]\\s*$"
+          }
+        ]
+    },
+    "multiBlock": {
+      "name": "meta.structure.array.fos",
+      "begin": "^\\s*\\[\\[\\s*[A-Za-z0-9_]+\\s*\\]\\]\\s*$",
+      "beginCaptures": { 
+        "0": { "name": "keyword.control.multiblock.fos" },
+        "1": { "name": "punctuation.section.sequence.begin.fos" }
+      },
+      "end": "(?=^\\s*\\[\\s*[A-Za-z0-9_]+\\s*\\]\\s*$|^\\s*\\[\\[\\s*[A-Za-z0-9_]+\\s*\\]\\]\\s*$)",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.sequence.end.fos" }
+      },
+      "applyEndPatternLast": true,
+      "patterns": [
+        { "include": "#calcComments" },
+        { "include": "#comments" },
+        { "include": "#loopedKey" },
+        { "include": "#keyValue" },
+        { "include": "#multilineString"},
+        { "include": "#blockValue" },
+        { "include": "#numericValue" },
+        { "include": "#stringValue" }
+      ]
+    },
+
+    "calcComments": {
+      "patterns": [
+        {
+          "name": "support.other.calc-comment.fos",
+          "match": "^\\s*//\\s*!.*$"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.read.fos",
+          "match": "^\\s*//.*$"
+        }
+      ]
+    },
+
+    "loopedKey": {
+      "patterns": [
+        {
+          "name": "support.type.property-name.fos",
+          "match": "^\\s*:[A-Za-z_][A-Za-z0-9_]*\\s*$"
+        }
+      ]
+    },
+    "multilineString": {
+      "patterns": [
+        {
+          "name": "string.quoted.other.json",
+          "begin": "\\s*\\[\\s*;;;",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.json" } },
+          "end": "\\s*\\]\\s*$",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.json" } },
+          "patterns": [
+            { "name": "string.quoted.other.json", "match": ".+" }
+          ]
+        }
+      ]
+    },
+
+    "keyValue": {
+      "patterns": [
+        {
+          "begin": "\\s*([A-Za-z_][A-Za-z0-9_,]*)\\s*:",
+          "beginCaptures": {
+            "1": { "name": "support.type.property-name.json" },
+            "0": { "name": "punctuation.separator.key-value.json" }
+          },
+          "end": "$|\\s*(?=\\])",
+          "patterns": [
+            { "include": "#calcComments" },
+            { "include": "#comments" },
+            { "include": "#multilineString" },
+            { "include": "#blockValue" },
+            { "include": "#numericValue" },
+            { "include": "#stringValue" },
+            { "include": "#numericValue" }
+          ]
+        }
+      ],
+      "applyEndPatternLast": true
+    },
+
+    "blockValue": {
+      "patterns": [
+        {
+          "name": "meta.structure.array.fos",
+          "begin": "\\s*\\[\\[(?=\\s*\\]\\]|\\s*.*:|\\s*$)",
+          "beginCaptures": { "0": { "name": "punctuation.section.sequence.begin.fos" } },
+          "end": "\\s*\\]\\]\\s*$",
+          "endCaptures": { "0": { "name": "punctuation.section.sequence.end.fos" } },
+          "patterns": [
+            { "include": "#calcComments" },
+            { "include": "#comments" },
+            { "include": "#loopedKey" },
+            { "include": "#keyValue" },
+            { "include": "#multilineString"},
+            { "include": "#blockValue" },
+            { "include": "#numericValue" },
+            { "include": "#stringValue" }
+          ]
+        },
+        {
+          "name": "meta.structure.dictionary.fos",
+          "begin": "\\s*\\[(?=\\s*\\]|\\s*.*:|\\s*$)",
+          "beginCaptures": { "0": { "name": "punctuation.section.mapping.begin.fos" } },
+          "end": "\\s*\\]\\s*$",
+          "endCaptures": { "0": { "name": "punctuation.section.mapping.end.fos" } },
+          "patterns": [
+            { "include": "#calcComments" },
+            { "include": "#comments" },
+            { "include": "#keyValue" },
+            { "include": "#garbage"}
+          ]
+        }
+      ]
+    },
+
+    "numericValue": {
+      "patterns": [
+        {
+          "name": "constant.numeric.fos",
+          "match": "\\s*\\b[0-9]+(?:\\.[0-9]+)?\\b(?=\\s*$)"
+        }
+      ]
+    },
+
+    "stringValue": {
+      "patterns": [
+        {
+          "name": "string.quoted.other.json",
+          "match": "\\s*[^\\s\\[\\]\\{\\}]+(?:\\s+[^\\s\\[\\]\\{\\}]+)*"
+        }
+      ]
+    },
+    "garbage": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.fos",
+          "match": ".+"
+        }
+      ]
+    }
+  }
+}

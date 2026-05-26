@@ -1,0 +1,25 @@
+{
+  "name": "fos",
+  "displayName": "File of Synthesis",
+  "description": "ASCII File for communicating methods and results for Solid-State Syntheses",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.118.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "fos",
+      "aliases": ["File of Synthesis", "FOS"],
+      "extensions": [".fos"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "fos",
+      "scopeName": "source.fos",
+      "path": "./syntaxes/FOS.tmLanguage.json"
+    }]
+  }
+}
