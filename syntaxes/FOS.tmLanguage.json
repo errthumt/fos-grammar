@@ -74,10 +74,7 @@
           "begin": "\\s*\\[\\s*;;;",
           "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.json" } },
           "end": "\\s*\\]\\s*$",
-          "endCaptures": { "0": { "name": "punctuation.definition.string.end.json" } },
-          "patterns": [
-            { "name": "string.quoted.other.json", "match": ".+" }
-          ]
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.json" } }
         }
       ]
     },
