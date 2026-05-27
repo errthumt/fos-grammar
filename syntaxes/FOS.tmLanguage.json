@@ -64,7 +64,7 @@
       "patterns": [
         {
           "name": "support.type.property-name.fos",
-          "match": "^\\s*:[A-Za-z_][A-Za-z0-9_]*\\s*$"
+          "match": "^\\s*:[A-Za-z_][A-Za-z0-9_,$]*\\s*$"
         }
       ]
     },
@@ -83,7 +83,7 @@
     "keyValue": {
       "patterns": [
         {
-          "begin": "\\s*([A-Za-z_][A-Za-z0-9_,]*)\\s*:",
+          "begin": "\\s*([A-Za-z_][A-Za-z0-9_,$]*)\\s*:",
           "beginCaptures": {
             "1": { "name": "support.type.property-name.json" },
             "0": { "name": "punctuation.separator.key-value.json" }
